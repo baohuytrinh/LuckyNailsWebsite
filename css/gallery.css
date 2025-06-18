@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Playfair Display", serif;
+}
+
+:root {
+    --font-01 : "Playfair Display", serif;
+    
+
+    /* color */
+    --global-color-0 :#e41345;
+    --global-color-1 :#ea4293;
+    --global-color-2 :#1a1a1a;
+    --global-color-3 :#3e4359;
+    --global-color-4 :#f7f7f7;
+    --global-color-5 :#fff;
+    --global-color-6 :#243673;
+    --global-color-7 :#BFD1FF;
+}
+
+header u1 li #home {
+    color: var(--global-color-5);
+}
+
+header u1 li #gallery {
+    color: var(--global-color-1);
+}
+
+header u1 li #gallery:hover {
+    color: var(--global-color-0);
+    transform: all .4s ease;
+}
+
+.sectionFirst{
+    padding: 12rem 0% 15rem;
+}
+
+.sectionFirst::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/nails2bg.jpg');
+    background-size: cover;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.sectionFirst .transform-image img{
+    padding: 0;
+    position: relative;
+
+    width: 100%;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    overflow-x: hidden;
+}
+
+.sectionFirst h1{
+    text-align: center;
+    font-family:'Times New Roman', Times;   
+    font-size: 12.5rem;
+}
+
+.sectionFirst>p {
+    margin-top: 1rem;
+    text-align: center;
+    font-family: var(--font-01);
+    font-size: 3rem;
+    color:#e2d407;
+}
+
+
+/* aboutGallery */
+
+.aboutGallery {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7rem;
+    
+}
+
+.aboutGallery .ser-litText{
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: var(--font-01);
+    text-align: center;
+    color: var(--global-color-1);
+}
+
+.aboutGallery .ser-text{
+    text-align: center;
+    margin-bottom: 2rem;
+
+}
+
+.aboutGallery .ser-box{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    color: #fff;
+}
+
+.aboutGallery .ser-box .box{
+    position: relative;
+    top: 0;
+    overflow: hidden;
+}
+
+.aboutGallery .ser-box .box::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 90%;
+    width: 90%;
+    background: var(--global-color-1);
+    z-index: 1;
+    opacity: .1;
+
+    border-radius: 2%;
+    transition: all .4s ease;
+}
+
+.aboutGallery .ser-box .box:hover::after{
+    width: 0;
+}
+
+.aboutGallery .ser-box .box .img {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.aboutGallery .ser-box .box .img img{
+    width: 90%;
+    height: 90%;
+    border-radius: 2%;
+    box-shadow: 4px 4px 4px rgba(0,0,0, .5);
+}
+
+.aboutGallery .ser-box .box .boxinfo{
+    position: absolute;
+    bottom: 10%;
+    left: 3%;
+    z-index: 2;
+}
+
+.aboutGallery .ser-box .box .boxinfo .ser-des{
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: var(--global-color-1);
+    padding-bottom: .8rem;
+}
