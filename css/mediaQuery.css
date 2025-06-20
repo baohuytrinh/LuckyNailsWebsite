@@ -132,9 +132,9 @@
         text-align: center;
     }
 
-    .servicesSection {
-        /* grid-template-columns: repeat(1, 1fr); */
-    }
+    /* .servicesSection {
+        grid-template-columns: repeat(1, 1fr);
+    } */
 }
 
 
