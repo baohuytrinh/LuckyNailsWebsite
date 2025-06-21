@@ -6,17 +6,16 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const app = express();
 
-
 // mongoDB
 
 const mongoose = require('mongoose');
 const mongoURI = process.env.MONGO_URI;
-
+const userEmail = process.env.EMAIL_HOST;
+const userPassword = process.env.EMAIL_PASS;
 
 mongoose.connect(mongoURI)
   .then(() => {console.log('Connected to MongoDB');})
   .catch(err => {console.error('MongoDB connection error:', err);});
-
 
 const contactSchema = new mongoose.Schema({
   name: String,
@@ -46,19 +45,18 @@ app.post('/contact', async (req, res) => {
     return res.status(500).json({ message: 'Failed to save to database.' });
   }
 
-
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'anthonytrinh0508@gmail.com',
-      pass: 'egbniahjaexobpar'
+      user: userEmail,
+      pass: userPassword
     }
   });
 
   let mailOptions = {
-    from: 'anthonytrinh0508@gmail.com',
+    from: userEmail,
     //gmail (and most SMTP providers) will reject emails where the "from" address is not the same as the authenticated user.
-    to: 'anthonytrinh0508@gmail.com',
+    to: userEmail,
     subject: `New Contact Form Submission from ${name}`,
     text: `
       Name: ${name}
@@ -68,7 +66,6 @@ app.post('/contact', async (req, res) => {
       Message: ${message}
     `
   };
-
   
   try {
     await transporter.sendMail(mailOptions);
@@ -82,7 +79,6 @@ app.post('/contact', async (req, res) => {
 app.listen(5000, () => {
   console.log('Server running on http://localhost:5000');
 });
-
 
 // const express = require('express');
 // const path = require('path');
