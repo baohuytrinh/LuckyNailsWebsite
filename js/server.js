@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const nodemailer = require('nodemailer');
@@ -8,7 +10,7 @@ const app = express();
 // mongoDB
 
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb+srv://@cluster0.uhoqpav.mongodb.net/LuckyNailsDB?retryWrites=true&w=majority';
+const mongoURI = process.env.MONGO_URI;
 
 
 mongoose.connect(mongoURI)
