@@ -4,6 +4,30 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const app = express();
 
+
+// mongoDB
+
+const mongoose = require('mongoose');
+const mongoURI = 'mongodb+srv://@cluster0.uhoqpav.mongodb.net/LuckyNailsDB?retryWrites=true&w=majority';
+
+
+mongoose.connect(mongoURI)
+  .then(() => {console.log('Connected to MongoDB');})
+  .catch(err => {console.error('MongoDB connection error:', err);});
+
+
+const contactSchema = new mongoose.Schema({
+  name: String,
+  number: String,
+  email: String,
+  service: String,
+  message: String,
+  date: { type: Date, default: Date.now }
+});
+const Contact = mongoose.model('Contact', contactSchema);
+
+// mongoDB end
+
 console.log('Serving static files from:', path.join(__dirname, '..'));
 app.use(express.static(path.join(__dirname, '..')));
 app.use(express.json());
@@ -11,6 +35,15 @@ app.use(cors());
 
 app.post('/contact', async (req, res) => {
   const { name, number, email, service, message } = req.body;
+
+  //MongoDB
+  try {
+    await Contact.create({ name, number, email, service, message });
+  } catch (dbError) {
+    console.error('MongoDB error:', dbError);
+    return res.status(500).json({ message: 'Failed to save to database.' });
+  }
+
 
   let transporter = nodemailer.createTransport({
     service: 'gmail',
